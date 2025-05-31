@@ -1,0 +1,67 @@
+{
+  "name": "@bongkow/globalui",
+  "version": "0.0.1",
+  "description": "React global alert UI component & hook",
+  "private": false,
+  "type": "module",
+  "license": "MIT",
+  "author": "skim@bongkow.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bongkow/globalui"
+  },
+  "keywords": [
+    "react",
+    "component",
+    "ui",
+    "global"
+  ],
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./style.css": "./dist/style.css"
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": [
+    "*.css"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "rimraf dist && vite build && tsc -p tsconfig.prod.json",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "zustand": "^5.0.0"
+  },
+  "peerDependenciesMeta": {
+    "zustand": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "@vitejs/plugin-react": "^4.5.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "rimraf": "^6.0.1",
+    "typescript": "^5.5.0",
+    "vite": "^6.3.5",
+    "vite-plugin-dts": "^4.5.4",
+    "zustand": "^5.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
