@@ -96,11 +96,7 @@ showAlert(
 
 ## Styling
 
-The component is built with Tailwind CSS and requires Tailwind CSS to be properly configured in your project. Import the CSS file in your root component:
-
-```tsx
-import '@bongkow/globalui/style.css';
-```
+The component is built with Tailwind CSS and requires Tailwind CSS to be properly configured in your project.
 
 ### Tailwind CSS Configuration
 
