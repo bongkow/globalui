@@ -31,7 +31,7 @@ const AlertModal = ({ title, message, isOpen, onClose, imgUrl, type }: AlertModa
     return (
         <dialog
             ref={dialogRef}
-            className="AlertModalDialog fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 backdrop:bg-black/20 backdrop:backdrop-blur-[2px] p-0 rounded-lg shadow-xl max-w-md w-full m-0"
+            className="AlertModalDialog fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 backdrop:bg-black/20 backdrop:backdrop-blur-[2px] p-0 rounded-lg shadow-xl w-[min(90%,50vw)] h-[min(90%,50vh)] m-0 overflow-y-auto"
             onCancel={onClose}
         >
             <div className="AlertModal1 px-3 py-3 w-full h-full bg-white border border-gray-200 rounded-lg">
