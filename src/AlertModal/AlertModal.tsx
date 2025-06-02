@@ -53,12 +53,10 @@ const AlertModal = ({ title, message, isOpen, onClose, imgUrl, type }: AlertModa
                         )}
                         <div className="flex gap-1 justify-start items-start mt-4">
                             {imgUrl && (
-                                <div className="flex-shrink-0 w-1/3 max-w-[50px]">
+                                <div className="flex-shrink-0 w-1/5 h-full max-h-[calc(100%-2rem)]">
                                     <img 
                                         src={imgUrl} 
                                         alt="Alert"
-                                        width={50}
-                                        height={50}
                                         className="w-full h-full object-contain rounded-lg"
                                     />
                                 </div>
