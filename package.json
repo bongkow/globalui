@@ -1,6 +1,6 @@
 {
   "name": "@bongkow/globalui",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "React global alert UI component & hook",
   "private": false,
   "type": "module",
