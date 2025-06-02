@@ -56,7 +56,9 @@ const AlertModal = ({ title, message, isOpen, onClose, imgUrl, type }: AlertModa
                                 <div className="flex-shrink-0 w-1/3 max-w-[50px]">
                                     <img 
                                         src={imgUrl} 
-                                        alt="Alert" 
+                                        alt="Alert"
+                                        width={50}
+                                        height={50}
                                         className="w-full h-full object-contain rounded-lg"
                                     />
                                 </div>
