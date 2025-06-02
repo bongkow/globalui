@@ -1,24 +1,18 @@
 import { useState, useCallback } from 'react';
-import type { AlertType } from './alertTypes';
-
+import type { OptionalAlertProps } from './useAlertStore';
 export interface AlertModalProps {
     title: string;
     message: string;
     isOpen: boolean;
-    otherProps?: OptionalAlertModalProps;
+    otherProps?: OptionalAlertProps;
 }
 
-interface OptionalAlertModalProps {
-    imageUrl?: string;
-    type?: AlertType;
-    demension?:{width:number,height:number}
-}
 
 export const useAlertModal = () => {
     const [modalState, setModalState] = useState<Omit<AlertModalProps, 'isOpen'> | null>(null);
 
-    const showAlert = useCallback((title: string, message: string, otherProps?: OptionalAlertModalProps) => {
-        setModalState({ title, message, ...otherProps });
+    const showAlert = useCallback((title: string, message: string,  otherProps?: OptionalAlertProps) => {
+        setModalState({ title: title, message, otherProps });
     }, []);
 
     const hideAlert = useCallback(() => {

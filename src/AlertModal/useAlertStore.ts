@@ -2,29 +2,32 @@
 import { create } from 'zustand';  //"zustand": "^5.0.5",
 import type { AlertType } from './alertTypes';
 
-interface AlertState {
-    isOpen: boolean;
-    message: string;
-    title?: string;
+export interface AlertState {
+    title: string; // required
+    message: string; // required
+    isOpen: boolean; // required
+    showAlert: (message: string, title?: string, otherProps?: OptionalAlertProps) => void;
+    hideAlert: () => void;
+    otherProps?: OptionalAlertProps;
+}
+
+export interface OptionalAlertProps{
     imgUrl?: string;
     type?: AlertType;
-    showAlert: (message: string, title?: string, imgUrl?: string, type?: AlertType) => void;
-    hideAlert: () => void;
+    demension?: {width:number,height:number};
 }
 
 export const useAlertStore = create<AlertState>((set) => ({
     isOpen: false,
-    message: '',
-    title: undefined,
-    imgUrl: undefined,
-    type: undefined,
-    showAlert: (message: string, title?: string, imgUrl?: string, type?: AlertType) => 
+    message: "",
+    title: "",
+    otherProps: undefined,
+    showAlert: (message: string, title?: string, otherProps?: OptionalAlertProps) => 
         set({
             isOpen: true,
             message,
             title,
-            imgUrl,
-            type,
+            otherProps
         }),
     hideAlert: () => 
         set((state) => ({

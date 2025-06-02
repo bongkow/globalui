@@ -7,18 +7,17 @@ interface GlobalUIProviderProps {
 }
 
 export const GlobalUIProvider: React.FC<GlobalUIProviderProps> = ({ children }) => {
-    const { isOpen, message, title, imgUrl, type, hideAlert } = useAlertStore();
+    const { isOpen, message, title, otherProps, hideAlert } = useAlertStore();
 
     return (
         <>
             {children}
             <AlertModal
+                title={title || ''}
                 isOpen={isOpen}
                 onClose={hideAlert}
                 message={message}
-                title={title}
-                imgUrl={imgUrl}
-                type={type}
+                otherProps={otherProps}
             />
         </>
     );

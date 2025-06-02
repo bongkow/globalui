@@ -28,30 +28,10 @@ const AlertModal = ({ title, message, isOpen, onClose, otherProps }: AlertModalC
         borderColor: 'border-gray-200'
     };
 
-    // Calculate dimensions based on props or use default responsive values
-    const getDialogDimensions = () => {
-        if (otherProps?.demension) {
-            return {
-                width: `${otherProps.demension.width}px`,
-                height: `${otherProps.demension.height}px`
-            };
-        }
-        return {
-            width: 'min(450px, 90vw)',
-            height: 'min(250px, 90vh)'
-        };
-    };
-
-    const dimensions = getDialogDimensions();
-
     return (
         <dialog
             ref={dialogRef}
-            className="AlertModalDialog fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 backdrop:bg-black/20 backdrop:backdrop-blur-[2px] p-0 rounded-lg shadow-xl m-0 overflow-y-auto"
-            style={{
-                width: dimensions.width,
-                height: dimensions.height
-            }}
+            className="AlertModalDialog fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 backdrop:bg-black/20 backdrop:backdrop-blur-[2px] p-0 rounded-lg shadow-xl w-[min(90%,50vw)] h-[min(90%,50vh)] m-0 overflow-y-auto"
             onCancel={onClose}
         >
             <div className="AlertModal1 px-3 py-3 w-full h-full bg-white border border-gray-200 rounded-lg">
@@ -72,10 +52,10 @@ const AlertModal = ({ title, message, isOpen, onClose, otherProps }: AlertModalC
                             </div>
                         )}
                         <div className="flex gap-1 justify-start items-start mt-4">
-                            {otherProps?.imageUrl && (
+                            {otherProps?.imgUrl && (
                                 <div className="flex-shrink-0 w-1/5 h-full max-h-[calc(100%-2rem)]">
                                     <img 
-                                        src={otherProps.imageUrl} 
+                                        src={otherProps?.imgUrl} 
                                         alt="Alert"
                                         className="w-full h-full object-contain rounded-lg"
                                     />
