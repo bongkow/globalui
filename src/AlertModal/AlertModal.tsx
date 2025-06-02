@@ -6,7 +6,7 @@ interface AlertModalComponentProps extends AlertModalProps {
     onClose: () => void;
 }
 
-const AlertModal = ({ title, message, isOpen, onClose, imgUrl, type }: AlertModalComponentProps) => {
+const AlertModal = ({ title, message, isOpen, onClose, otherProps }: AlertModalComponentProps) => {
     const dialogRef = useRef<HTMLDialogElement>(null);
 
     useEffect(() => {
@@ -21,17 +21,37 @@ const AlertModal = ({ title, message, isOpen, onClose, imgUrl, type }: AlertModa
     }, [isOpen]);
 
     // Use plain white background with black text when no type is provided
-    const alertConfig = type ? ALERT_TYPE_CONFIG[type] : {
+    const alertConfig = otherProps?.type ? ALERT_TYPE_CONFIG[otherProps.type] : {
         icon: '',
         bgColor: 'bg-white',
         textColor: 'text-black',
         borderColor: 'border-gray-200'
     };
 
+    // Calculate dimensions based on props or use default responsive values
+    const getDialogDimensions = () => {
+        if (otherProps?.demension) {
+            return {
+                width: `${otherProps.demension.width}px`,
+                height: `${otherProps.demension.height}px`
+            };
+        }
+        return {
+            width: 'min(450px, 90vw)',
+            height: 'min(250px, 90vh)'
+        };
+    };
+
+    const dimensions = getDialogDimensions();
+
     return (
         <dialog
             ref={dialogRef}
-            className="AlertModalDialog fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 backdrop:bg-black/20 backdrop:backdrop-blur-[2px] p-0 rounded-lg shadow-xl w-[min(90%,50vw)] h-[min(90%,50vh)] m-0 overflow-y-auto"
+            className="AlertModalDialog fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 backdrop:bg-black/20 backdrop:backdrop-blur-[2px] p-0 rounded-lg shadow-xl m-0 overflow-y-auto"
+            style={{
+                width: dimensions.width,
+                height: dimensions.height
+            }}
             onCancel={onClose}
         >
             <div className="AlertModal1 px-3 py-3 w-full h-full bg-white border border-gray-200 rounded-lg">
@@ -40,7 +60,7 @@ const AlertModal = ({ title, message, isOpen, onClose, imgUrl, type }: AlertModa
                         {title && (
                             <div className={`AlertTitle ${alertConfig.bgColor} -mx-3 -mt-5 px-3 pt-5 pb-3 rounded-t-lg border-b ${alertConfig.borderColor}`}>
                                 <h3 className={`text-lg font-medium leading-6 ${alertConfig.textColor} flex items-center gap-2`}>
-                                    {type && (
+                                    {otherProps?.type && (
                                         <div className={`flex-shrink-0 ${alertConfig.textColor}`}>
                                             <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
                                                 <path strokeLinecap="round" strokeLinejoin="round" d={alertConfig.icon} />
@@ -52,10 +72,10 @@ const AlertModal = ({ title, message, isOpen, onClose, imgUrl, type }: AlertModa
                             </div>
                         )}
                         <div className="flex gap-1 justify-start items-start mt-4">
-                            {imgUrl && (
+                            {otherProps?.imageUrl && (
                                 <div className="flex-shrink-0 w-1/5 h-full max-h-[calc(100%-2rem)]">
                                     <img 
-                                        src={imgUrl} 
+                                        src={otherProps.imageUrl} 
                                         alt="Alert"
                                         className="w-full h-full object-contain rounded-lg"
                                     />
